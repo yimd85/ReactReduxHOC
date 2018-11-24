@@ -1,9 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
+import requireAuth from 'components/requireAuth';
 
 class CommentBox extends Component {
     state = { comment: '' };
+
+    // //component just got rendered
+    // componentDidMount(){
+    //     this.shouldNavigateAway();
+    // }
+
+    // //Our component just a new set of props or just got updaeted
+    // componentDidUpdate(){
+    //     this.shouldNavigateAway();
+    // }
+
+
+    // shouldNavigateAway() {
+    //     if (!this.props.auth) {
+    //         // console.log('i need to leave!');
+    //         this.props.history.push('/'); //this navigates to the root route
+    //     }
+    // }
+    
     
     handleChange = event => {
         this.setState({ comment: event.target.value });
@@ -39,9 +59,11 @@ class CommentBox extends Component {
 
 }
 
+// function mapStateToProps(state) {
+//     return { auth: state.auth}
+// }
 
-
-export default connect(null, actions)(CommentBox);
+export default connect(null, actions)(requireAuth(CommentBox));
 
 //transition this from a function based component to a class based component 
 //this way this can have component level state and have call back
